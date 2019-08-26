@@ -16,7 +16,7 @@ env:
 install:
   - dotnet restore
 
-script: 
+script:
   - dotnet build
   - dotnet test FluentApiGenericRepository.Test/FluentApiGenericRepository.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
@@ -26,4 +26,4 @@ after_script:
   - ./codecov -f "./FluentApiGenericRepository.Test/coverage.opencover.xml" -t $CODECOV_TOKEN
   - dotnet pack -c Release -p:PackageVersion=1.$TRAVIS_BUILD_NUMBER.0
   - cd ./FluentApiGenericRepository/bin/Release
-  - dotnet nuget push FluentApiGenericRepository.1.$TRAVIS_BUILD_NUMBER.0 -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+  - dotnet nuget push FluentApiGenericRepository.1.$TRAVIS_BUILD_NUMBER.0.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
