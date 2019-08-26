@@ -1,0 +1,27 @@
+language: csharp
+mono: none 
+dotnet: 2.2.0
+dist: xenial
+
+branches:
+  only:
+  - master
+  - develop
+
+env:
+  global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    - DOTNET_CLI_TELEMETRY_OPTOUT=1
+install:
+  - dotnet restore
+
+script: 
+  - dotnet build
+  - dotnet test FluentApiGenericRepository.Test/FluentApiGenericRepository.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+after_script:
+  - curl -s https://codecov.io/bash > codecov
+  - chmod +x codecov
+  - ./codecov -f "FluentApiGenericRepository.Test.xml" -t $CODECOV_TOKEN
+  - dotnet pack -c Release -p:PackageVersion=1.$TRAVIS_BUILD_NUMBER.0
+  - dotnet nuget push FluentApiGenericRepository.1.$TRAVIS_BUILD_NUMBER.0 -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
