@@ -7,7 +7,6 @@ dist: xenial
 branches:
   only:
   - master
-  - develop
 
 env:
   global:
