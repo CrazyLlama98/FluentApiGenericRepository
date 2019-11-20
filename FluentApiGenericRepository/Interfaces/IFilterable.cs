@@ -5,7 +5,7 @@ using FluentApiGenericRepository.Interfaces.Queries;
 namespace FluentApiGenericRepository.Interfaces
 {
     public interface IFilterable<T>
-        where T : class, IEntity
+        where T : class
     {
         IQuery<T> Filter();
 

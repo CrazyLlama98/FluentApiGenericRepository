@@ -3,7 +3,7 @@
 namespace FluentApiGenericRepository.Interfaces
 {
     public interface IAddable<in T>
-        where T : class, IEntity
+        where T : class
     {
         Task AddAsync(T entity);
     }

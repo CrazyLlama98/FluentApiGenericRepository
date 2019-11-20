@@ -3,7 +3,7 @@
 namespace FluentApiGenericRepository.Interfaces
 {
     public interface IUpdateable<in T>
-        where T : class, IEntity
+        where T : class
     {
         void Update(T entity);
     }
