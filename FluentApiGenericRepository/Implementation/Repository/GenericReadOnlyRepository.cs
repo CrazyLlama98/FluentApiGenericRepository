@@ -17,17 +17,17 @@ namespace FluentApiGenericRepository.Implementation.Repository
             Entities = dbContext.Set<T>();
         }
 
-        public IQuery<T> Filter()
+        public virtual IQuery<T> Filter()
         {
             return new Query<T>(Entities);
         }
 
-        public async Task<T> GetByIdAsync(object id)
+        public virtual async Task<T> GetByIdAsync(object id)
         {
             return await Entities.FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await Entities.ToListAsync();
         }

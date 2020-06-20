@@ -12,17 +12,17 @@ namespace FluentApiGenericRepository.Implementation.Repository
         {
         }
 
-        public async Task AddAsync(T entity)
+        public virtual async Task AddAsync(T entity)
         {
             await Entities.AddAsync(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             Entities.Update(entity);
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             Entities.Remove(entity);
         }
